@@ -1,6 +1,7 @@
 const {
   User,
   UserSignUpRequest,
+  UserLoginRequest,
   Product,
   NewProductRequest,
   Stock,
@@ -18,10 +19,25 @@ module.exports = {
       email: 'info@summitech.com',
     },
   },
+  servers: [
+    {
+      url: 'http://localhost:{port}/api/{basePath}',
+      description: 'Development API Server',
+      variables: {
+        basePath: {
+          default: "v1"
+        },
+        port: {
+          default: '5000',
+        }
+      },
+    },
+  ],
   components: {
     schemas: {
       User,
       UserSignUpRequest,
+      UserLoginRequest,
       Product,
       NewProductRequest,
       Stock,
