@@ -8,6 +8,9 @@ module.exports = {
       res.status(201).json(data);  
     } catch (error) {
       console.log(error);
+      if (error.code === 'ER_DUP_ENTRY') {
+        return res.status(409).json({ message: 'Product already created by you' });
+      }
       res.status(500).json({ message: error.message });
     }
   },

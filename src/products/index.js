@@ -1,4 +1,13 @@
 const router = require('express').Router();
+
+const {
+  newProductRequestSchema,
+} = require('./validation/product-schema');
+  
+const {
+  validateNewProductRequest
+} = require('./validation/validate-product');
+
 const controller = require('./controller');
 
 /**
@@ -20,10 +29,33 @@ const controller = require('./controller');
 *             application/json:
 *               schema:
 *                 $ref: '#/components/schemas/Product'
+*         409:
+*           description: Product already exists
+*           content:
+*             application/json:
+*               schema:
+*                 type: object
+*                 properties:
+*                   message:
+*                     type: string
+*                     example: Product already created by this user
+*         422:
+*           description: Invalid request
+*           content:
+*             application/json:
+*               schema:
+*                 type: object
+*                 properties:
+*                   message:
+*                     type: string
+*                     example: Invalid credentials
+*                   errors:
+*                     type: string
+*                     example: Invalid field name
 *         500:
 *           description: Internal server error
 */
-router.post('/', controller.newProduct);
+router.post('/', validateNewProductRequest(newProductRequestSchema), controller.newProduct);
 
 /**
 * @swagger
