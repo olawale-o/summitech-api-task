@@ -11,7 +11,7 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/api/v1/users', require('./users'));
-// app.use('/api/v1/transactions', passport.authenticate('jwt', {session: false}), require('../routes/transactions'));
+app.use('/api/v1/products', require('./products'));
 
 // app.use(errorHandler);
 
