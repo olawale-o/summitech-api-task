@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-// app.use('/api/v1/users', require('../routes/users'));
+app.use('/api/v1/users', require('./users'));
 // app.use('/api/v1/transactions', passport.authenticate('jwt', {session: false}), require('../routes/transactions'));
 
 // app.use(errorHandler);
