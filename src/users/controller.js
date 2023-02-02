@@ -12,7 +12,10 @@ module.exports = {
       return res.status(201).json(data);
     } catch (error) {
       console.log(error);
-      return res.status(500).json({ error: 'Internal server error' });
+      if (error.code === 'ER_DUP_ENTRY') {
+        return res.status(409).json({ message: 'Please login with your credentials' });
+      }
+      return res.status(500).json({ message: 'Internal server error' });
     }
   },
   login: async (req, res) => {
@@ -25,7 +28,7 @@ module.exports = {
       return res.status(200).json(data);
     } catch (error) {
       console.log(error);
-      return res.status(500).json({ error: 'Internal server error' });
+      return res.status(500).json({ message: 'Internal server error' });
     }
   },
 }

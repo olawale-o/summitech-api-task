@@ -29,6 +29,29 @@ const controller = require('./controller');
 *             application/json:
 *               schema:
 *                 $ref: '#/components/schemas/User'
+*         409:
+*           description: User already exists
+*           content:
+*             application/json:
+*               schema:
+*                 type: object
+*                 properties:
+*                   message:
+*                     type: string
+*                     example: Please login with your email and password
+*         422:
+*           description: Invalid request
+*           content:
+*             application/json:
+*               schema:
+*                 type: object
+*                 properties:
+*                   message:
+*                     type: string
+*                     example: Invalid credentials
+*                   errors:
+*                     type: string
+*                     example: Invalid email
 *         500:
 *           description: Internal server error
 */
