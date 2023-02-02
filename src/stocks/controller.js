@@ -16,6 +16,9 @@ module.exports = {
       if (error.code === 'ER_DUP_ENTRY') {
         return res.status(409).json({ message: 'Stock already created by you or you update stock' });
       }
+      if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+        return res.status(404).json({ message: 'Please ensure product exist before adding to stock' });
+      }
       res.status(500).json({ message: error.message });
     }
   },

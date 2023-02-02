@@ -26,6 +26,16 @@ const controller = require('./controller');
 *             application/json:
 *               schema:
 *                 $ref: '#/components/schemas/Stock'
+*         404:
+*           description: Unauthorized
+*           content:
+*             application/json:
+*               schema:
+*                 type: object
+*                 properties:
+*                   message:
+*                     type: string
+*                     example: Plesase ensure product exist before adding to stock
 *         409:
 *           description: Stock already exists
 *           content:
