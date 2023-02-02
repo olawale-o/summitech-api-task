@@ -13,7 +13,9 @@ module.exports = {
         updatedAt: data.updated_at,
       });
     } catch (error) {
-      console.log(error);
+      if (error.code === 'ER_DUP_ENTRY') {
+        return res.status(409).json({ message: 'Stock already created by you or you update stock' });
+      }
       res.status(500).json({ message: error.message });
     }
   },

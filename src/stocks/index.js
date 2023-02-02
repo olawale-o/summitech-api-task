@@ -1,4 +1,10 @@
 const router = require('express').Router();
+    
+const { newStockRequestSchema } = require('./validation/stock-schema');
+const {
+  validateNewStockRequest
+} = require('./validation/validate-stock');
+  
 const controller = require('./controller');
 
 /**
@@ -20,10 +26,33 @@ const controller = require('./controller');
 *             application/json:
 *               schema:
 *                 $ref: '#/components/schemas/Stock'
+*         409:
+*           description: Stock already exists
+*           content:
+*             application/json:
+*               schema:
+*                 type: object
+*                 properties:
+*                   message:
+*                     type: string
+*                     example: Stock already created for this product or you update the stock
+*         422:
+*           description: Invalid request
+*           content:
+*             application/json:
+*               schema:
+*                 type: object
+*                 properties:
+*                   message:
+*                     type: string
+*                     example: Invalid credentials
+*                   errors:
+*                     type: string
+*                     example: Invalid field name
 *         500:
 *           description: Internal server error
 */
-router.post('/', controller.newStock);
+router.post('/', validateNewStockRequest(newStockRequestSchema), controller.newStock);
 
 /**
 * @swagger
