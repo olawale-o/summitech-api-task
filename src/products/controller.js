@@ -11,6 +11,9 @@ module.exports = {
       if (error.code === 'ER_DUP_ENTRY') {
         return res.status(409).json({ message: 'Product already created by you' });
       }
+      if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+        return res.status(401).json({ message: 'Please create an account to have a product in stock' });
+      }
       res.status(500).json({ message: error.message });
     }
   },
