@@ -1,4 +1,13 @@
 const router = require('express').Router();
+const {
+  userSignUpRequestSchema,
+  userLoginRequestSchema,
+} = require('./validation/user-schema');
+
+const {
+   validateUserSignUp,
+   validateUserLogin,
+} = require('./validation/validate-user');
 const controller = require('./controller');
 
 /**
@@ -23,7 +32,7 @@ const controller = require('./controller');
 *         500:
 *           description: Internal server error
 */
-router.post('/', controller.new);
+router.post('/', validateUserSignUp(userSignUpRequestSchema),  controller.new);
 
 /**
 * @swagger
@@ -47,6 +56,6 @@ router.post('/', controller.new);
 *         500:
 *           description: Internal server error
 */
-router.post('/login', controller.login);
+router.post('/login', validateUserLogin(userLoginRequestSchema), controller.login);
 
 module.exports = router;
