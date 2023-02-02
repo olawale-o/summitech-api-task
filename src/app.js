@@ -12,6 +12,7 @@ app.use(cors());
 
 app.use('/api/v1/users', require('./users'));
 app.use('/api/v1/products', require('./products'));
+app.use('/api/v1/stocks', require('./stocks'));
 
 // app.use(errorHandler);
 
