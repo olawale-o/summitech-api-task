@@ -9,6 +9,11 @@ const newStockRequestSchema = Joi.object({
   productId: Joi.number()
     .integer()
     .required(),
+  userId: Joi.number()
+    .integer()
+    .required(),
+  batchId: Joi.string()
+    .required(),
 });
 
 
