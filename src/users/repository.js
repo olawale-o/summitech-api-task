@@ -11,4 +11,7 @@ module.exports = {
   findByEmail: async ({ email }) => {
     return db('users').where({ email, }).first('id', 'email', 'full_name', 'password', 'created_at', 'updated_at');
   },
+  findById: async ({ id }) => {
+    return db('users').where({ id }).first('id');
+  },
 };
