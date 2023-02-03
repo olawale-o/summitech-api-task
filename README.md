@@ -5,6 +5,9 @@
 - MYSQL
 - ExpressJS
 
+# Documentation
+
+`http://localhost:5000/api/docs`
 # Getting started
 ## To get a local copy of this repository kindly follow the steps below.
 - Scroll to top of this current repository
