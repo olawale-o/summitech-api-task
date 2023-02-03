@@ -58,11 +58,16 @@ const NewStockRequest = {
       type: 'integer',
       description: 'The product id of the stock',
     },
+    bactchId: {
+      type: 'string',
+      description: 'The unique batch id of the stock'
+    },
   },
   example: {
     qty: 2,
     details: 'stock details',
     productId: 1,
+    bactchId: 'gsk26389'
   },
 };
     
