@@ -87,6 +87,16 @@ router.post('/', validateNewProductRequest(newProductRequestSchema), controller.
 *             application/json:
 *               schema:
 *                 $ref: '#/components/schemas/Product'
+*         404:
+*           description: Not found
+*           content:
+*             application/json:
+*               schema:
+*                 type: object
+*                 properties:
+*                   message:
+*                     type: string
+*                     example: Product not found
 *         500:
 *           description: Internal server error
 */

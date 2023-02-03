@@ -21,6 +21,11 @@ module.exports = {
     try {
       const { id } = req.params;
       const data = await service.findProduct({ id });
+      if (!data) {
+        return res.status(404).json({
+          message: "Product not found",
+        });
+      }
       res.status(200).json(data);
     } catch (error) {
       console.log(error);
