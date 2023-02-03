@@ -22,6 +22,7 @@
 npm install
 ```
 
+Kindly create a database named **summitech_dev** in your MySQL client on your local machine before running migration
 # Migration
 
 ```bash
