@@ -32,6 +32,8 @@ module.exports = {
       const stocks = await service.findAllStocks();
       const data = stocks.map((stock) => ({
         id: stock.id,
+        product_name:  stock.name,
+        batch_id: stock.batch_id,
         description: `${stock.qty} ${stock.details} of ${stock.name} with batchId ${stock.batch_id}`,
         createdAt: stock.created_at,
         updatedAt: stock.updated_at,

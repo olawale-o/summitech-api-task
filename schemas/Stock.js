@@ -1,6 +1,6 @@
 const Stock = {
   type: 'object',
-  required: ['qty', 'product_id', 'details', 'batch_id'],
+  required: ['qty', 'product_id', 'description', 'batch_id'],
   properties: {
     id: {
       type: 'integer',
@@ -10,13 +10,13 @@ const Stock = {
       type: 'integer',
       description: 'The stock quantity',
     },
-    details: {
+    description: {
       type: 'string',
       description: 'The stock details',
     },
-    product_id: {
+    product_name: {
       type: 'integer',
-      description: 'The product id of the stock',
+      description: 'The product name of the stock',
     },
     batch_id: {
       type: 'string',
@@ -34,8 +34,8 @@ const Stock = {
   example: {
     id: 1,
     qty: 2,
-    details: 'stock details',
-    product_id: 1,
+    description: '2 cartons of panadol with batchId 234848ndbf-7880k',
+    product_name: 'panadol',
     batch_id: '234848ndbf-7880k',
     created_at: '2020-01-01',
     updated_at: '2020-01-01',
