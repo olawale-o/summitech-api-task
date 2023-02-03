@@ -3,14 +3,19 @@ const service = require('./service');
 module.exports = {
   newStock: async (req, res) => {
     try {
-      const { details, qty, productId } = req.body;
-      const data = await service.newStock({ details, qty, product_id: productId });
+      const { details, qty, productId, userId, batchId } = req.body;
+      const data = await service.newStock({
+        details,
+        qty,
+        product_id: productId,
+        batch_id: batchId,
+        userId,
+      });
       res.status(201).json({
         id: data.id,
-        description: `${data.qty} ${data.details} of ${data.product_id} added to stock with batchId ${data.batch_id}`,
-        productId: data.product_id,
+        description: `${data.qty} ${data.details} of ${data.name} added to stock with batchId ${data.batch_id}`,
+        productId,
         createdAt: data.created_at,
-        updatedAt: data.updated_at,
       });
     } catch (error) {
       if (error.code === 'ER_DUP_ENTRY') {
@@ -24,10 +29,15 @@ module.exports = {
   },
   findAllStocks: async (req, res) => {
     try {
-      const data = await service.findAllStocks();
+      const stocks = await service.findAllStocks();
+      const data = stocks.map((stock) => ({
+        id: stock.id,
+        description: `${stock.qty} ${stock.details} of ${stock.name} with batchId ${stock.batch_id}`,
+        createdAt: stock.created_at,
+        updatedAt: stock.updated_at,
+      }));
       res.status(200).json(data);
     } catch (error) {
-      console.log(error);
       res.status(500).json({ message: error.message });
     }
   },
