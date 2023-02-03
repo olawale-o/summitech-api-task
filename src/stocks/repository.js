@@ -4,10 +4,15 @@ module.exports = {
   insertOne: async (credentials) => {
     return db('stocks').insert(credentials)
     .then((id) => {
-      return db('stocks').where('id', id[0]).first('id', 'qty', 'details', 'batch_id', 'product_id', 'created_at', 'updated_at');
+      return db('products')
+      .join('stocks', 'products.id', '=', 'stocks.product_id')
+      .where('batch_id', credentials.batch_id)
+      .first('stocks.id' ,'products.name', 'stocks.qty', 'stocks.details', 'stocks.batch_id', 'stocks.created_at')
     })
   },
   findAll: async () => {
-    return db('stocks').select('id', 'qty', 'details', 'batch_id', 'product_id', 'created_at', 'updated_at');
+    return db('stocks')
+      .join('products', 'products.id', '=', 'stocks.product_id')
+      .select('stocks.id', 'stocks.qty', 'stocks.details', 'products.name', 'stocks.batch_id', 'stocks.created_at', 'stocks.updated_at');
   },
 };
