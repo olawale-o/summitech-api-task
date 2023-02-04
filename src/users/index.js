@@ -24,7 +24,7 @@ const controller = require('./controller');
 *               $ref: '#/components/schemas/UserSignUpRequest'
 *       responses:
 *         200:
-*           description: Task created successfully
+*           description: Success
 *           content:
 *             application/json:
 *               schema:
@@ -71,7 +71,7 @@ router.post('/', validateUserSignUp(userSignUpRequestSchema),  controller.new);
 *               $ref: '#/components/schemas/UserLoginRequest'
 *       responses:
 *         200:
-*           description: Task created successfully
+*           description: Success
 *           content:
 *             application/json:
 *               schema:
