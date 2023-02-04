@@ -3,7 +3,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-//  const errorHandler = require('../middleware/errorHandler');
 
 const app = express();
 
@@ -21,6 +20,5 @@ app.use('/api/v1/products', require('./products'));
 app.use('/api/v1/stocks', require('./stocks'));
 
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
-// app.use(errorHandler);
 
 module.exports = app;
